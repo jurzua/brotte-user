@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -22,10 +23,12 @@ public class UserController {
         this.userService = userService;
     }
 
+    //endpoint = method in controller
 
     @GetMapping()
-    public List<User> findAll() {
-        return userService.findAll();
+    public List<User> findAll(@RequestParam("name") Optional<String> nameFilter) {
+        //System.out.println(nameFilter);
+        return userService.findAll(nameFilter);
     }
 
     @GetMapping("/{userId}")
