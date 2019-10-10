@@ -37,4 +37,30 @@ public class PersonService {
         return result;
     }
 
+    /***
+     * Method that returns all persons who age is bigger than given parameter
+     * **/
+    public List<Person> getOlderThan(Integer age){
+        List<Person> result = new ArrayList<>();
+        for(Person item: this.db){
+            if(item.getAge()>age){
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Method that return a list of professors or student whose firstName in the given parameter
+     * ***/
+    public List<Person> getByFirstNameAndType(String firstName, Class personType){
+        List<Person> result = new ArrayList<>();
+        for(Person item: this.db){
+            if(item.getFirstName().startsWith(firstName) && item.getClass().equals(personType)){
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
 }
